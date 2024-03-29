@@ -32,3 +32,5 @@
 
 #passwords
 /time_budget/keys.py
+
+ai_venv/
