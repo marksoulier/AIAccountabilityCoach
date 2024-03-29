@@ -1,0 +1,55 @@
+.navigator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 2px solid #000;
+    /* Add a line across the bottom */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    /* Adjust the space between the links as needed */
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links li:not(:last-child):after {
+    content: "|";
+    position: absolute;
+    right: -10px;
+    /* Adjust based on your gap and font size */
+    color: #000;
+    /* Color of the vertical line */
+}
+
+.nav-links a {
+    text-decoration: none;
+    /* Remove the underline */
+    color: #000;
+    /* Adjust as needed */
+    padding: 5px 10px;
+    /* Add some padding */
+}
+
+.nav-links a.active {
+    background-color: orange;
+    /* Background color for the active link */
+    border-radius: 5px;
+    /* Optional: adds rounded corners */
+}
+
+.logo {
+    /* Style your logo container if needed */
+}
+
+.logo-img {
+    height: 70px;
+    /* Sets the height and maintains aspect ratio */
+    width: auto;
+    /* Adjusts width automatically to maintain aspect ratio */
+}

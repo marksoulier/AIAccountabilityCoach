@@ -1,0 +1,44 @@
+<!-- home.html -->
+{% extends 'timeapp/base_home.html' %}
+
+<!-- {% block title %}Home - Time Budget{% endblock %} -->
+
+{% block content %}
+{% load static %}
+<!-- First content section -->
+<section class="flex justify-center items-center my-8">
+    <div class="w-05 px-6">
+        <h2 class="text-4xl font-bold text-gray-800">Welcome to Time Budget</h2>
+        <p class="mt-4 text-gray-600">
+            Join us and take control of your time, with the best tools to plan your day,
+            track your activities, and manage your tasks efficiently.
+        </p>
+        <a href="{% url 'account_signup' %}"
+            class="mt-6 inline-block px-6 py-2 text-white font-bold bg-orange-500 rounded hover:bg-orange-700 transition duration-300">
+            Join for Free
+        </a>
+    </div>
+    <div class="w-05 px-6 overflow-hidden">
+        <img src="{% static 'timeapp/images/app_home_page.png' %}" alt="App Preview" class="transform -translate-x-25">
+    </div>
+
+
+    <!-- Second content section -->
+</section>
+<div class="flex justify-center items-center">
+    <div class="w-05 px-6">
+        <img src="{% static 'timeapp/images/ai_graph.png' %}" alt="Feature Image" class="w-full">
+    </div>
+    <div class="w-05 px-6">
+        <ul class="list-disc list-inside text-gray-600">
+            <li>Feature One - Detailing the uniqueness of your app.</li>
+            <li>Feature Two - How your app stands out in the market.</li>
+            <li>Feature Three - User benefits and problem-solving.</li>
+            <!-- Add more list items as needed -->
+        </ul>
+    </div>
+</div>
+</section>
+
+<!-- Third content section -->
+{% endblock %}

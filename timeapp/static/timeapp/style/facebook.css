@@ -1,0 +1,43 @@
+.facebook-btn {
+    background-color: #4267B2;
+    /* Facebook Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    /* hand cursor on hover */
+}
+
+.facebook-icon-wrapper {
+    background-color: white;
+    border-radius: 2px;
+    padding: 10px;
+    margin-right: 10px;
+    /* Spacing between icon and text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.facebook-icon {
+    width: 18px;
+    /* Set the size of the Facebook 'F' icon */
+    height: 18px;
+}
+
+.btn-text {
+    color: white;
+    margin-left: 10px;
+    /* Spacing between icon and text */
+}
+
+/* Additional styles for the button text and hover effects can be added as needed */

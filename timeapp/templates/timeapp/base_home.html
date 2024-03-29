@@ -1,0 +1,72 @@
+<!--base_home.html -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Budget - Home</title>
+    <!-- Include Tailwind CSS via CDN for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'timeapp/style/home.css' %}">
+</head>
+
+<body class="bg-gray-100">
+    <header class="header">
+        <!-- Logo -->
+        <a href="{% url 'home' %}">
+            <img src="{% static 'timeapp/images/time_budget_logo2.png' %}" alt="Time Budget Logo" class="logo">
+        </a>
+        <!-- Authentication Links -->
+        <div>
+            <a href="{% url 'account_login' %}" class="button">Sign In</a>
+            <a href="{% url 'account_signup' %}"
+                class="button bg-orange-500 rounded hover:bg-orange-700 transition duration-300"
+                style="color: #f8f9fa;">Join for Free</a>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Main content gets overridden in child templates -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="text-left">
+                    <h3 class="text-lg font-bold">Put Time Budget to the test.</h3>
+                    <p>7-day free trial.</p>
+                    <p>See firsthand how it’s revolutionizing productivity, work, and happiness.</p>
+                    <a href="{% url 'signup' %}" class="mt-4 inline-block px-6 py-2 bg-orange-500 rounded">
+                        Try Time Budget for Free
+                    </a>
+                </div>
+                <div class="text-right">
+                    <p>Tech and media companies are talking about Time Budget</p>
+                    <!-- Add logos here -->
+                    <div class="flex mt-4">
+                        <!-- Make sure to replace `path_to_logo` with actual paths -->
+                        <img src="{% static 'path_to_forbes_logo.png' %}" alt="Forbes" class="h-6 mx-2">
+                        <img src="{% static 'path_to_business_insider_logo.png' %}" alt="Business Insider"
+                            class="h-6 mx-2">
+                        <img src="{% static 'path_to_techcrunch_logo.png' %}" alt="TechCrunch" class="h-6 mx-2">
+                        <img src="{% static 'path_to_lifehacker_logo.png' %}" alt="Lifehacker" class="h-6 mx-2">
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-8">
+                <p class="text-gray-500 text-sm text-center">
+                    © 2024 Time Budget, Inc. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

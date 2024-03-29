@@ -1,0 +1,40 @@
+.goal-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}
+
+.goal-input {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.goal-input input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.goal {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.achieve-button {
+    margin-left: 10px;
+}
+
+.achieved {
+    text-decoration: line-through;
+    background-color: #e0ffe0;
+}

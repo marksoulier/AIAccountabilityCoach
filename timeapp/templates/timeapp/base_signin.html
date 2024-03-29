@@ -1,0 +1,36 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Time Budget{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'timeapp/style/login.css' %}">
+    <link rel="stylesheet" href="{% static 'timeapp/style/home.css' %}">
+    <link rel="stylesheet" href="{% static 'timeapp/style/google.css' %}">
+    <link rel="stylesheet" href="{% static 'timeapp/style/facebook.css' %}">
+</head>
+
+<body class="bg-gray-100">
+    <header class="header">
+        <!-- Logo -->
+        <a href="{% url 'home' %}">
+            <img src="{% static 'timeapp/images/time_budget_logo2.png' %}" alt="Time Budget Logo" style="height: 70px;">
+        </a>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Main content gets overridden in child templates -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+
+</html>

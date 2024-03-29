@@ -1,0 +1,48 @@
+{% extends 'timeapp/base_signin.html' %}
+
+{% load socialaccount %} <!-- Load the socialaccount template tags -->
+{% load static %}
+{% block title %}Sign Up - Time Budget{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-container">
+        <h2>Sign Up</h2>
+        <!-- Social Login Links -->
+        <div class="social-auth-links">
+            <a class="google-btn" href="/accounts/google/login/?process=login">
+                <span class="google-icon-wrapper">
+                    <img class="google-icon" src="{% static 'timeapp/images/google_icon.png' %}" alt="Google logo" />
+                </span>
+                <span class="btn-text">Sign in with Google</span>
+            </a>
+        </div>
+        <div class="social-auth-links">
+            <a class="facebook-btn" href="{% url 'facebook_login' %}">
+                <span class="facebook-icon-wrapper">
+                    <img class="facebook-icon" src="{% static 'timeapp/images/facebook_icon.png' %}"
+                        alt="Facebook logo" />
+                </span>
+                <span class="btn-text">Sign in with Facebook</span>
+            </a>
+        </div>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="button bg-orange-500 rounded hover:bg-orange-700 transition duration-300"
+                style="color:white">
+                Sign up
+            </button>
+        </form>
+        <p>Already have an Account? <a href="{% url 'account_login' %}"
+                class="text-orange-500 hover:text-orange-700">Sign
+                in</a></p>
+    </div>
+</div>
+{% endblock %}
