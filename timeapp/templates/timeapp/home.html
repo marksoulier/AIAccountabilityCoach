@@ -8,10 +8,9 @@
 <!-- First content section -->
 <section class="flex justify-center items-center my-8">
     <div class="w-05 px-6">
-        <h2 class="text-4xl font-bold text-gray-800">Welcome to Time Budget</h2>
+        <h2 class="text-4xl font-bold text-gray-800">Empower Your Goals with AI</h2>
         <p class="mt-4 text-gray-600">
-            Join us and take control of your time, with the best tools to plan your day,
-            track your activities, and manage your tasks efficiently.
+            Shape Your Success: Set and Plan Your Goals, Embrace AI Accountability, and Achieve Together with Friends
         </p>
         <a href="{% url 'account_signup' %}"
             class="mt-6 inline-block px-6 py-2 text-white font-bold bg-orange-500 rounded hover:bg-orange-700 transition duration-300">
@@ -19,13 +18,33 @@
         </a>
     </div>
     <div class="w-05 px-6 overflow-hidden">
-        <img src="{% static 'timeapp/images/app_home_page.png' %}" alt="App Preview" class="transform -translate-x-25">
+        <img src="{% static 'timeapp/images/side_app_art.png' %}" alt="App Preview" class="transform -translate-x-25">
     </div>
 
-
-    <!-- Second content section -->
 </section>
-<div class="flex justify-center items-center">
+<!-- Second content section -->
+<section class="features-section">
+    <div class="feature-item">
+        <img src="{% static 'timeapp/images/target.png' %}" alt="Set SMART goals" class="icon-image icon-image-large">
+        <p class="text-gray-800">Set SMART goals</p>
+    </div>
+    <div class="feature-item">
+        <img src="{% static 'timeapp/images/notepad.png' %}" alt="Be kept accountable" class="icon-image">
+        <p class="text-gray-800">Be kept accountable</p>
+    </div>
+    <div class="feature-item">
+        <img src="{% static 'timeapp/images/collaboration.png' %}" alt="Do it with others"
+            class="icon-image icon-image-collaboration">
+        <p class="text-gray-800">Do it with others</p>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- <div class="flex justify-center items-center">
     <div class="w-05 px-6">
         <img src="{% static 'timeapp/images/ai_graph.png' %}" alt="Feature Image" class="w-full">
     </div>
@@ -34,11 +53,10 @@
             <li>Feature One - Detailing the uniqueness of your app.</li>
             <li>Feature Two - How your app stands out in the market.</li>
             <li>Feature Three - User benefits and problem-solving.</li>
-            <!-- Add more list items as needed -->
         </ul>
     </div>
 </div>
-</section>
+</section> -->
 
 <!-- Third content section -->
 {% endblock %}

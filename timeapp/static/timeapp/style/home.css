@@ -1,5 +1,12 @@
-/* dark-orange = #cb4100 */
-/* light-blue = #dc6900 */
+/* Color Pallete:
+Grayish-white: #F5F5F5
+White: #DFE1E2
+Sky-blue: #65D9FF
+Darkersky-blue:#55abba
+Dark-blue: #223140
+Black: #1B1B1B */
+
+
 
 /* Header CSS */
 .header {
@@ -15,8 +22,22 @@
 }
 
 .logo {
-    height: 70px;
-    /* Adjust as needed */
+    font-weight: bold;
+    /* Makes the text bold */
+    font-size: 30px;
+    /* Adjusts the size. Feel free to change this value */
+    color: #1B1B1B;
+    /* Text color, can be adjusted */
+    text-decoration: none;
+    /* Removes the underline typically associated with links */
+    transition: color 0.3s ease;
+    /* Smooth transition for color change on hover */
+}
+
+.logo:hover {
+    /* Color when the mouse hovers over the text */
+    cursor: pointer;
+    /* Changes the cursor to indicate it's clickable */
 }
 
 .button {
@@ -25,6 +46,10 @@
     color: #4a4a4a;
     border-radius: 0.25rem;
     margin-left: 0.5rem;
+}
+
+.button:hover {
+    color: #55abba;
 }
 
 /* Body CSS */
@@ -46,11 +71,16 @@ body {
 
 .w-05 {
     width: 50%;
+    /*center the content*/
+    margin: 0 auto;
+    text-align: center;
+    /* Center text horizontally */
 }
 
 .px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+
 }
 
 .my-8 {
@@ -98,7 +128,7 @@ body {
 }
 
 .bg-orange-500 {
-    background-color: #dc6900;
+    background-color: #55abba;
 }
 
 .rounded {
@@ -106,7 +136,7 @@ body {
 }
 
 .hover\:bg-orange-700:hover {
-    background-color: #cb4100;
+    background-color: #223140;
 }
 
 .transition {
@@ -139,11 +169,58 @@ body {
 
 
 
+/* second section CSS */
+.features-section {
+    background-color: #dadada;
+    /* Light gray background */
+    padding: 3rem 0;
+    /* Padding around the section */
+    display: flex;
+    /* Use flexbox for layout */
+    justify-content: center;
+    /* Center items horizontally */
+    gap: 10vw;
+    /* Space between items */
+    position: relative;
+    /* Ensure the scaling doesn't affect the document flow adversely */
+}
 
+.feature-item {
+    text-align: center;
+    /* Center the text and icons */
+    max-width: 200px;
+    /* Set a max width for each item */
+    display: flex;
+    /* Enable Flexbox */
+    flex-direction: column;
+    /* Stack children (icon and text) vertically */
+    align-items: center;
+    /* Center children horizontally */
+    justify-content: center;
+    /* Center children vertically */
+    overflow: visible;
+}
 
+.icon-image {
+    width: 80px;
+    /* Fixed width for all images */
+    height: 80px;
+    /* Fixed height for all images */
+    object-fit: contain;
+    /* Ensure images maintain their aspect ratio without being cropped */
+    margin-bottom: 1rem;
+    /* Space between icon and text */
+    transition: transform 0.3s ease;
+}
 
+.icon-image-large {
+    transform: scale(1.5);
+}
 
-
+.icon-image-collaboration {
+    transform: scale(2.2) translateY(10px);
+    /* Adjust scale and translateY values as needed */
+}
 
 
 
@@ -157,7 +234,7 @@ body {
 
 /* Footer CSS */
 .bg-gray-800 {
-    background-color: #2d3748;
+    background-color: #223140;
 }
 
 .text-white {

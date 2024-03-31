@@ -1,0 +1,49 @@
+/* Dropdown Button styling to match existing buttons */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* .button {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #4a4a4a;
+    border-radius: 0.25rem;
+    margin-left: 0.5rem;
+} */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #4a4a4a;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Add more styling here to match your existing '.button' class */
+.dropdown-button,
+.dropdown-content a {
+    color: #4a4a4a;
+    padding: 10px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    color: #55abba;
+}
