@@ -314,3 +314,80 @@ body {
 .rounded {
     border-radius: 0.25rem;
 }
+
+
+/* Research Section */
+
+.smart-goals-section {
+    padding: 4rem;
+    /* Increased padding for the whole section */
+    background-color: #f7f7f7;
+    /* Light gray background for contrast */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    /* Increased margin for the title */
+    color: #333;
+    font-size: 2.5rem;
+    /* Larger font size for the title */
+}
+
+.goal {
+    margin-bottom: 3rem;
+    /* Increased margin between goals */
+}
+
+.goal h2 {
+    color: #55abba;
+    /* Blue color for headers */
+    font-size: 3rem;
+    /* Increased font size for goal headers */
+    margin-bottom: 2.5rem;
+    /* Increased margin below headers */
+}
+
+.goal p,
+.goal ul {
+    margin-bottom: 2rem;
+    /* Increased margin below paragraphs and lists */
+    color: #666;
+    /* Dark gray text for readability */
+    font-size: 1rem;
+    /* Standard font size for text */
+}
+
+.goal ul {
+    list-style-type: none;
+    /* Remove default list style */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.goal ul li {
+    position: relative;
+    /* Allows custom bullet positioning */
+    margin-bottom: 1rem;
+    /* Margin between list items */
+    padding-left: 1.5rem;
+    /* Space for custom bullet */
+}
+
+.goal ul li:before {
+    content: "";
+    /* Required for pseudo-elements */
+    position: absolute;
+    left: 0;
+    /* Align bullet with text start */
+    top: 0.5em;
+    /* Center bullet vertically with the list item text */
+    height: 10px;
+    /* Bullet size */
+    width: 10px;
+    /* Bullet size */
+    background-color: #55abba;
+    /* Bullet color */
+    border-radius: 50%;
+    /* Round bullet */
+}

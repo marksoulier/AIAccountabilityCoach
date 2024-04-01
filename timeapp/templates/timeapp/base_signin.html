@@ -7,19 +7,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Time Budget{% endblock %}</title>
+    <title>{% block title %}AI Accountability Coach{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'timeapp/style/login.css' %}">
     <link rel="stylesheet" href="{% static 'timeapp/style/home.css' %}">
     <link rel="stylesheet" href="{% static 'timeapp/style/google.css' %}">
     <link rel="stylesheet" href="{% static 'timeapp/style/facebook.css' %}">
+    <link rel="stylesheet" href="{% static 'timeapp/style/home.css' %}">
 </head>
 
 <body class="bg-gray-100">
     <header class="header">
         <!-- Logo -->
-        <a href="{% url 'home' %}">
-            <img src="{% static 'timeapp/images/time_budget_logo2.png' %}" alt="Time Budget Logo" style="height: 70px;">
-        </a>
+        <a href="{% url 'home' %}" class="logo">AIAccountabilityCoach</a>
     </header>
 
     <main>
