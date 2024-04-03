@@ -1,5 +1,5 @@
 // goalActions.js
-
+import store from '../store';
 // Action Types
 export const ADD_GOAL = 'ADD_GOAL';
 export const REMOVE_GOAL = 'REMOVE_GOAL';
@@ -15,7 +15,15 @@ export const FETCH_GOALS_SUCCESS = 'FETCH_GOALS_SUCCESS';
 // Add this asynchronous action creator to goalActions.js
 export const fetchGoals = () => async (dispatch) => {
     try {
-        const response = await fetch('/api/goals-dreams/');
+        //fetch access token from redux store
+        const accessToken = store.getState().auth.accessToken;
+        // Setup headers with Authorization
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${accessToken}` // Include the token here
+            }
+        };
+        const response = await fetch('/api/goals-dreams/', config);
         if (!response.ok) {
             // Log or handle HTTP errors (e.g., response status is not 2xx)
             console.error('Network response was not ok:', response.statusText);

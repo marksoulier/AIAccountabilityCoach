@@ -2,8 +2,28 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Profile from './components/Profile/Profile';
 import Subscribe from './components/Subscribe/Subscribe';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { setAuthTokens } from './actions/authActions';
+import store from './store';
 
 function App() {
+  // Set Authentication tokens from cookies
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Assuming tokens are stored in cookies for this example
+    const accessToken = Cookies.get('jwt_access_token');
+    const refreshToken = Cookies.get('jwt_refresh_token');
+
+    // console.log('Access Token React:', accessToken);
+    // console.log('Refresh Token React:', refreshToken);
+    if (accessToken && refreshToken) {
+      dispatch(setAuthTokens(accessToken, refreshToken));
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from time_budget.keys import EMAIL_HOST_PASSWORD_PASS, DATABASE_PASSWORD
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,6 +37,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "timeapp",
+    # "timeapp.apps.TimeappConfig",
     "front_end",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",  # for api
     "corsheaders",  # for api
+    "rest_framework.authtoken",  # for api
     # authenticaion
     "django.contrib.sites",
     "allauth",
@@ -96,6 +99,18 @@ SOCIALACCOUNT_PROVIDERS = {
         "VERIFIED_EMAIL": False,
         "VERSION": "v7.0",
     },
+}
+
+# set up rest framework with security
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
 MIDDLEWARE = [
