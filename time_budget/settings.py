@@ -192,11 +192,11 @@ EMAIL_PORT = 587
 # EMAIL_HOST_PASSWORD = (
 # ""  # Your Gmail password or app-specific password
 # )
-EMAIL_HOST_USER = "mark.soulier@timebudget.co"
+EMAIL_HOST_USER = "no-reply@timebudget.co"
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD_PASS
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_REQUIRED = True
-
+DEFAULT_FROM_EMAIL = "no-reply@timebudget.co"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -244,6 +244,7 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  #
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "front_end/build/static"),
+    os.path.join(BASE_DIR, "front_end/build"),
     os.path.join(BASE_DIR, "timeapp/static"),
 ]
 

@@ -7,6 +7,7 @@ from .views import (
     login_view,
     send_test_email,
     serve_react,
+    send_personal_email,
 )
 from django.conf import settings
 from django.urls import re_path, include
@@ -36,7 +37,6 @@ urlpatterns = [
         name="index",
     ),
     path("signout/", signout, name="signout"),
-    path("send-test-email/", send_test_email, name="send_test_email"),
     # api views
     path("api/goals-dreams/", GoalsDreamsList.as_view(), name="goals-dreams-list"),
     path(
@@ -49,4 +49,39 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
+    # testing
+    path("send-email/", send_personal_email, name="send_personal_email"),
+    path("send-test-email/", send_test_email, name="send_test_email"),
+    # password reset
+    # Password Reset URLs
+    path(
+        "password_reset/",
+        auth_views.PasswordResetView.as_view(
+            template_name="registration/password_reset_form.html",
+            email_template_name="registration/password_reset_email.html",
+            subject_template_name="registration/password_reset_subject.txt",
+        ),
+        name="password_reset",
+    ),
+    path(
+        "password_reset/done/",
+        auth_views.PasswordResetDoneView.as_view(
+            template_name="registration/password_reset_done.html"
+        ),
+        name="password_reset_done",
+    ),
+    path(
+        "reset/<uidb64>/<token>/",
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name="registration/password_reset_confirm.html"
+        ),
+        name="password_reset_confirm",
+    ),
+    path(
+        "reset/done/",
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name="registration/password_reset_complete.html"
+        ),
+        name="password_reset_complete",
+    ),
 ]

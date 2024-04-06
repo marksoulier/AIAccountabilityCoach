@@ -16,7 +16,8 @@ class ActivityTracking(models.Model):
 # Goals and Dreams Model
 class GoalsDreams(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    goal = models.TextField()
+    goaltitle = models.TextField(default="")
+    description = models.TextField(default="")
     achieved = models.BooleanField(
         default=False
     )  # Indicates if the goal has been achieved
@@ -29,6 +30,8 @@ class GoalsDreams(models.Model):
     date_time = models.DateTimeField(
         default=timezone.now
     )  # Date and time the goal was created or for a deadline
+    # have the ability to link a goal to others emails
+    connected_emails = models.TextField(default="")
 
     def __str__(self):
-        return self.goal
+        return self.goaltitle

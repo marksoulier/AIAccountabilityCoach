@@ -14,14 +14,21 @@ from django.http import HttpResponse
 from time_budget import settings
 
 
-def send_test_email(request):
-    subject = "Hello from Django"
-    email_from = settings.EMAIL_HOST_USER  # It's better to get this from settings
+def send_test_email(user_name, user_goal, goal_url, unsubscribe_url):
+    subject = user_name + " has shared a goal with you!"
+    email_from = "no-reply@timebudget.co"
     recipient_list = [
-        "marksoulkid@gmail.com"
+        "marksoulkid@gmail.com",
+        # "tylerrich1326@gmail.com",
+        # "wyattwilliams99@hotmail.com",
     ]  # Replace with your recipient email address
+
+    # Populate context with the variables you want to use in the email template
     context = {
-        # Add context variables here if your email template needs them
+        "user_name": user_name,
+        "goal_url": goal_url,
+        "unsubscribe_url": unsubscribe_url,
+        "user_goal": user_goal,
     }
 
     # Load and render the HTML template with context
@@ -33,7 +40,21 @@ def send_test_email(request):
 
     # Send email
     email.send(fail_silently=False)
+
     return HttpResponse("HTML test email sent!")
+
+
+def send_personal_email(request):
+    user_name = "Mark"  # Replace with your name
+    user_goal = "Achieve mastery in Django and React to build a amazing application"  # Example goal, replace as necessary
+    goal_url = "http://example.com/your-goal"  # Replace with the actual URL
+    unsubscribe_url = "http://example.com/unsubscribe"  # Replace with the actual URL
+
+    # Call your email function
+    send_test_email(user_name, user_goal, goal_url, unsubscribe_url)
+
+    # Return a simple HTTP response
+    return HttpResponse("Email sent successfully!")
 
 
 # landing page

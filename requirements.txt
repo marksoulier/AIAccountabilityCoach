@@ -9,3 +9,11 @@ openai
 mysqlclient
 #import rest_framework
 djangorestframework
+#import django-cors-headers
+django-cors-headers
+#import django-allauth
+django-allauth
+#import boto3
+boto3
+#simplejwt
+djangorestframework-simplejwt
