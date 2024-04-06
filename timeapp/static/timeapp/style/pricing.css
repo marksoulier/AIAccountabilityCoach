@@ -1,0 +1,74 @@
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 3rem;
+    /* Adjust the space between banners */
+}
+
+.price-banner {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    /* Adjust width as necessary */
+    display: flex;
+    flex-direction: column;
+}
+
+.tier-title {
+    color: #223140;
+    /* Using the color from your previous banner */
+    margin-bottom: 10px;
+    font-size: 2.0rem;
+    /* Make title bigger */
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.duration {
+    font-size: 1rem;
+    color: #666;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    /* Make the features list fill the space */
+}
+
+.features-list li {
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 1.2em;
+    position: relative;
+}
+
+.features-list li::before {
+    content: "✔";
+    color: #223140;
+    /* Check mark color */
+    position: absolute;
+    left: 0;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .price-banner {
+        width: auto;
+        margin-bottom: 20px;
+    }
+}

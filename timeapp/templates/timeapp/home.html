@@ -39,15 +39,81 @@
     </div>
 </section>
 
+<!-- Show visual of creating SMART goals and description of AI utilization
+	-Show animation of application -->
 
+<section class="feature-section" id="features">
+    <div class="feature-image">
+        <!-- Add image of SMART form here-->
+        <!-- <img src="path_to_your_image.jpg" alt="Creating SMART Goals"> -->
+    </div>
+    <div class="feature-content">
+        <h2 class="text-4xl font-bold text-gray-800">AI-Powered SMART Goal Setting</h2>
+        <p class="mt-4 text-gray-600">Our AI accountability coach guides you through the process of creating Specific,
+            Measurable, Achievable,
+            Relevant, and Time-bound goals, leveraging advanced algorithms to ensure your targets are tailored to your
+            personal growth trajectory.</p>
+        <a href="{% url 'account_signup' %}"
+            class="mt-6 inline-block px-6 py-2 text-white font-bold bg-orange-500 rounded hover:bg-orange-700 transition duration-300">
+            Join for Free
+        </a>
+    </div>
+</section>
+
+<!-- Show visual of accountability from the LLM -->
+<section class="feature-section">
+    <div class="feature-content">
+        <h2 class="text-4xl font-bold text-gray-800">AI Accountability Coaching</h2>
+        <p class="mt-4 text-gray-600">Harness the power of advanced Large Language Models (LLM) to keep you on track.
+            Our AI accountability coach uses sophisticated language understanding to provide personalized advice,
+            motivation, and reminders to help you maintain focus on your SMART goals and ensure you're progressing as
+            planned.</p>
+        <a href="{% url 'account_signup' %}"
+            class="mt-6 inline-block px-6 py-2 text-white font-bold bg-orange-500 rounded hover:bg-orange-700 transition duration-300">
+            Get Started
+        </a>
+    </div>
+    <div class="feature-image">
+        <!-- Replace with your image showcasing the LLM feature -->
+        <!-- <img src="path_to_llm_feature_image.jpg" alt="LLM Accountability Coaching"> -->
+    </div>
+</section>
+
+
+
+<!-- Show visual of doing it with friends and keeping each other accountable -->
+<section class="feature-section">
+    <div class="feature-image">
+        <!-- Replace with an image that illustrates goal setting with friends and community -->
+        <!-- <img src="path_to_community_feature_image.jpg" alt="Goal Setting in Community"> -->
+    </div>
+    <div class="feature-content">
+        <h2 class="text-4xl font-bold text-gray-800">Community Goal Achievement</h2>
+        <p class="mt-4 text-gray-600">Transform goal setting into a collective journey. With our application, you're not
+            alone; you can work alongside friends, making commitments and holding each other accountable. The power of
+            community provides a supportive network, helping each member to achieve their goals and celebrate together.
+            Embrace collaborative success and stay motivated with peer encouragement and shared commitments.</p>
+        <a href="{% url 'account_signup' %}"
+            class="mt-6 inline-block px-6 py-2 text-white font-bold bg-orange-500 rounded hover:bg-orange-700 transition duration-300">
+            Start With Friends
+        </a>
+    </div>
+</section>
 
 
 <!-- Research content section -->
 
 <section class="smart-goals-section" , id="research">
-    <!-- <h1 class="section-title">Understanding SMART Goals</h1> -->
-
-    <!-- Specific -->
+    <hr>
+    <h2 class="section-title text-4xl font-bold text-gray-800 text-center">The Research</h2>
+    <blockquote class="section-description text-center mt-4 text-lg text-gray-600 mx-auto max-w-4xl">
+        “When you engage in a meaningful conversation with someone or even AI, you're forced to articulate your thoughts
+        and ideas. This process of putting your thoughts into words can help you gain a deeper understanding of your own
+        thoughts and feelings.”
+        <footer>— <cite><a href="https://www.forbes.com" target="_blank" rel="noopener noreferrer">How To Use AI As Your
+                    Accountability Coach (forbes.com)</a></cite></footer>
+    </blockquote>
+    <hr <!-- Specific -->
     <div class="goal">
         <h2>Specific</h2>
         <p>Goals should not be ambiguous. First, I write down my overall goal and describe precisely what I’m trying to
@@ -119,9 +185,16 @@
     </div>
 </section>
 
-
-
-
+<!-- Quote section -->
+<section class="quote-section">
+    <blockquote>
+        “I am so thoroughly convinced that if we don’t set goals in our life and learn how to master the techniques of
+        living to reach our goals, we can reach a ripe old age and look back on our life only to see that we reached but
+        a small part of our full potential. When one learns to master the principles of setting a goal, he will then be
+        able to make a great difference in the results he attains in this life.”
+        <cite>–PRESIDENT M. RUSSELL BALLARD</cite>
+    </blockquote>
+</section>
 
 <!-- <div class="flex justify-center items-center">
     <div class="w-05 px-6">
@@ -136,6 +209,57 @@
     </div>
 </div>
 </section> -->
+
+<!-- Pricing section -->
+<div class="pricing-container">
+    <!-- Free Tier -->
+    <div class="price-banner">
+        <h2 class="tier-title">Free</h2>
+        <p class="price">$0<span class="duration">/month</span></p>
+        <ul class="features-list">
+            <li>AI goal creation</li>
+            <li>AI Accountability coach</li>
+            <li>Email notifications</li>
+            <li>Friend coop goals</li>
+            <li>AI weekly planning session</li>
+        </ul>
+        <a href="{% url 'account_signup' %}"
+            class="button bg-orange-500 rounded hover:bg-orange-700 transition duration-300"
+            style="color: #f8f9fa;">Join for Free</a>
+    </div>
+
+    <!-- Subscription Tier -->
+    <div class="price-banner">
+        <h2 class="tier-title">Stay Accountable</h2>
+        <p class="price">$5<span class="duration">/month</span></p> <!-- Replace XX with your price -->
+        <ul class="features-list">
+            <li>AI goal creation</li>
+            <li>AI Accountability coach</li>
+            <li>Email notifications</li>
+            <li>Friend coop goals</li>
+            <li>AI weekly planning session</li>
+            <li>Text notifications</li>
+            <li>Held accountable by money</li>
+        </ul>
+        <a href="{% url 'account_signup' %}"
+            class="button bg-orange-500 rounded hover:bg-orange-700 transition duration-300"
+            style="color: #f8f9fa;">Subscribe Now</a>
+    </div>
+</div>
+
+
+
+<section class="about-section" id="about">
+    <h2 class="section-title text-4xl font-bold text-gray-800 text-center">About</h2>
+    <p class="section-description text-center mt-4 text-lg text-gray-600 mx-auto max-w-4xl">
+        The AI Accountability Coach is designed to empower individuals with the tools of productivity to achieve their
+        greatest aspirations. We uphold the belief that the path to self-discovery and fulfillment is not one to be
+        embarked upon in solitude. Every person deserves a companion to journey alongside them as they strive to unveil
+        their best selves. Life presents a unique opportunity to forge one's destiny and make an indelible impact. By
+        partnering with the AI Accountability Coach, you are taking proactive steps towards shaping your future, rather
+        than merely reacting to what life throws your way.
+    </p>
+</section>
 
 <!-- Third content section -->
 {% endblock %}

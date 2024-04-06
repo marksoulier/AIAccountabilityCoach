@@ -9,10 +9,6 @@ function GoalTracker() {
     const goals = useSelector(state => state.goal.goals);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchGoals());
-    }, [dispatch]);
-
     const handleAddGoal = () => {
         if (!newGoalText.trim()) return;
         dispatch(addGoal({

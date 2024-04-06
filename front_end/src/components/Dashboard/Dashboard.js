@@ -3,6 +3,8 @@ import Navigator from '../Navigator/Navigator';
 import ActivityTracker from '../ActivityTracker/ActivityTracker';
 import GoalTracker from '../GoalTracker/GoalTracker';
 import ChatWithOpenAI from '../ChatGPT/ChatWithOpenAI';
+import GoalForm
+    from '../GoalForm/GoalForm';
 const Dashboard = () => {
     return (
         <div>
@@ -11,6 +13,7 @@ const Dashboard = () => {
             <GoalTracker />
             <ActivityTracker />
             <ChatWithOpenAI />
+            <GoalForm />
         </div>
     );
 };

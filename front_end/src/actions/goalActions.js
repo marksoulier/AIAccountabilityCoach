@@ -1,10 +1,14 @@
 // goalActions.js
 import store from '../store';
+import axios from 'axios';
 // Action Types
 export const ADD_GOAL = 'ADD_GOAL';
 export const REMOVE_GOAL = 'REMOVE_GOAL';
 // Add this to your existing action types
 export const TOGGLE_GOAL_ACHIEVED = 'TOGGLE_GOAL_ACHIEVED';
+// Add to your existing action types
+export const CREATE_GOAL_SUCCESS = 'CREATE_GOAL_SUCCESS';
+export const CREATE_GOAL_FAILURE = 'CREATE_GOAL_FAILURE';
 
 
 // Action Creators
@@ -47,6 +51,35 @@ export const updateHoursSpent = (id, hoursSpent) => ({
     type: UPDATE_HOURS_SPENT,
     payload: { id, hoursSpent },
 });
+
+// New asynchronous action creator for creating a goal
+export const createGoalDream = (goalData) => async (dispatch) => {
+    try {
+        // Fetch access token from Redux store
+        const accessToken = store.getState().auth.accessToken;
+        // Setup headers with Authorization
+        const response = await axios.post('/api/goals-dreams/', goalData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}` // Include the token here
+            }
+        });
+
+        dispatch({
+            type: CREATE_GOAL_SUCCESS,
+            payload: response.data, // Assuming the server responds with the created goal
+        });
+        // Optionally, you can dispatch fetchGoals to refresh the list of goals
+    } catch (error) {
+        console.error('Failed to create goal:', error.response ? error.response.data : error);
+        dispatch({
+            type: CREATE_GOAL_FAILURE,
+            // You can pass error information to the reducer if you want to handle that in your UI
+            payload: error.response ? error.response.data : error,
+        });
+    }
+};
+
 
 // Add a Goal
 export const addGoal = (goal) => ({

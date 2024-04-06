@@ -33,5 +33,7 @@ class GoalsDreams(models.Model):
     # have the ability to link a goal to others emails
     connected_emails = models.TextField(default="")
 
+    # maybe a scoring system for goals
+
     def __str__(self):
         return self.goaltitle

@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
 import { setAuthTokens } from './actions/authActions';
+import { fetchGoals } from './actions/goalActions';
 import store from './store';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
     // console.log('Refresh Token React:', refreshToken);
     if (accessToken && refreshToken) {
       dispatch(setAuthTokens(accessToken, refreshToken));
+
+      //fetch the user data
+      dispatch(fetchGoals());
     }
   }, [dispatch]);
 

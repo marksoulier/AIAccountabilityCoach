@@ -58,6 +58,24 @@ body {
     padding-top: 70px;
 }
 
+.beta-banner {
+    background-color: #55abba;
+    color: #ffffff;
+    /* White text color for contrast */
+    text-align: center;
+    padding: 5px 0;
+    /* Adjust the padding to control the height of the banner */
+    font-weight: bold;
+    font-size: 0.9rem;
+    /* Adjust font size as needed */
+}
+
+/* Optional: Add responsiveness to the banner font-size */
+@media (max-width: 768px) {
+    .beta-banner {
+        font-size: 0.8rem;
+    }
+}
 
 
 
@@ -173,7 +191,7 @@ body {
 .features-section {
     background-color: #dadada;
     /* Light gray background */
-    padding: 3rem 0;
+    padding: 2rem 0;
     /* Padding around the section */
     display: flex;
     /* Use flexbox for layout */
@@ -328,6 +346,7 @@ body {
 .section-title {
     text-align: center;
     margin-bottom: 3rem;
+    margin-top: 2rem;
     /* Increased margin for the title */
     color: #333;
     font-size: 2.5rem;
@@ -390,4 +409,78 @@ body {
     /* Bullet color */
     border-radius: 50%;
     /* Round bullet */
+}
+
+
+.quote-section {
+    background-color: #dadada;
+    padding: 40px 20px;
+    /* Adjust the padding to control the spacing around the quote */
+    text-align: center;
+    /* Center align the quote */
+}
+
+.quote-section blockquote {
+    font-size: 1.5rem;
+    /* Large text for the quote */
+    color: #333333;
+    /* Adjust text color as needed for readability */
+    margin: 0 auto;
+    /* Center the blockquote */
+    max-width: 800px;
+    /* Max width of the quote to maintain readability */
+    font-style: italic;
+    /* Optional: Italicize the quote text */
+    line-height: 1.6;
+    /* Line height for better readability */
+}
+
+.quote-section cite {
+    display: block;
+    /* Put the author on a new line */
+    margin-top: 20px;
+    /* Space between the quote and the author */
+    font-size: 1rem;
+    /* Smaller font size for the author */
+    font-style: normal;
+    /* Override the italic style for the author */
+    font-weight: bold;
+    /* Optional: Bold the author's name */
+}
+
+.research-section {
+    padding: 40px 0;
+}
+
+.section-title {
+    margin-bottom: 20px;
+}
+
+.section-description {
+    margin-bottom: 40px;
+}
+
+.about-section {
+    padding: 40px 0;
+}
+
+.section-title {
+    margin-bottom: 20px;
+}
+
+.section-description {
+    margin-bottom: 40px;
+    font-size: 1rem;
+    /* Adjust based on your design preferences */
+    max-width: 800px;
+    /* Ensures text isn't too wide on larger screens */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensures the text remains comfortably readable */
+@media (max-width: 768px) {
+    .section-description {
+        padding: 0 20px;
+    }
 }

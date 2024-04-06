@@ -1,4 +1,5 @@
 // authActions.js
+import { fetchGoals } from "./goalActions";
 
 // Action type
 export const SET_AUTH_TOKENS = 'SET_AUTH_TOKENS';

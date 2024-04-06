@@ -16,7 +16,7 @@ class GoalsDreamsList(APIView):
     def post(self, request, format=None):
         serializer = GoalsDreamsSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
