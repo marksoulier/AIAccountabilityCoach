@@ -1,0 +1,70 @@
+/* PaymentForm.module.css */
+.paymentForm {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    padding: 40px;
+    background-color: #55abba;
+    /* Using Darkersky-blue as the background */
+}
+
+.paymentInput {
+    border: 1px solid #223140;
+    /* Using Dark-blue for the border */
+    padding: 10px 14px;
+    height: 40px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    width: calc(100% - 28px);
+    background: white;
+    color: #223140;
+    /* Using Dark-blue for text color */
+}
+
+.submitButton {
+    background: #223140;
+    /* Using Dark-blue for button background */
+    color: white;
+    border: none;
+    padding: 11px 0;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.submitButton:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.submitButton:not(:disabled):hover {
+    background: #1a2730;
+    /* Darken the Dark-blue a bit for hover effect */
+}
+
+/* Custom styling for Stripe CardElement */
+.StripeElement {
+    /* ... other styles ... */
+
+    /* When the element has focus */
+    &:focus {
+        border-color: #55abba;
+        /* Using Darkersky-blue for focus border */
+        outline: none;
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    /* When the element is invalid */
+    &.StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    /* When the element is empty */
+    &.StripeElement--empty {
+        border-color: #e6ebf1;
+    }
+}

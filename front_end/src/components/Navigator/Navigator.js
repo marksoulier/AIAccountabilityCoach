@@ -39,8 +39,8 @@ const Navigator = () => {
             </div>
             <ul className="nav-links">
                 <li><NavLink to="/index/dashboard" activeClassName="active">Dashboard</NavLink></li>
-                <li><NavLink to="/index/profile" activeClassName="active">Profile</NavLink></li>
-                <li><NavLink to="/index/subscribe" activeClassName="active">Subscribe</NavLink></li>
+                <li><NavLink to="/index/form" activeClassName="active">Form</NavLink></li>
+                <li><NavLink to="/index/payment" activeClassName="active">Subscribe</NavLink></li>
                 {/* Logout Button */}
                 <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
             </ul>

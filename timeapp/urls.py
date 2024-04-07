@@ -11,7 +11,7 @@ from .views import (
 )
 from django.conf import settings
 from django.urls import re_path, include
-from timeapp.api_views import GoalsDreamsList, ActivityTrackingList
+from timeapp.api_views import GoalsDreamsList, ActivityTrackingList, UserProfileView
 from django.contrib.auth import views as auth_views
 from timeapp.gpt_views import ChatWithOpenAIView
 from rest_framework_simplejwt.views import (
@@ -19,6 +19,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
+from timeapp.payment import PaymentConfirmationAPIView
 
 urlpatterns = [
     path("", home, name="home"),
@@ -38,6 +39,7 @@ urlpatterns = [
     ),
     path("signout/", signout, name="signout"),
     # api views
+    path("api/user/profile/", UserProfileView.as_view(), name="user-profile"),
     path("api/goals-dreams/", GoalsDreamsList.as_view(), name="goals-dreams-list"),
     path(
         "api/activity-tracking/",
@@ -52,6 +54,12 @@ urlpatterns = [
     # testing
     path("send-email/", send_personal_email, name="send_personal_email"),
     path("send-test-email/", send_test_email, name="send_test_email"),
+    # payment
+    path(
+        "api/payment/confirmation/",
+        PaymentConfirmationAPIView.as_view(),
+        name="payment_confirmation",
+    ),
     # password reset
     # Password Reset URLs
     path(

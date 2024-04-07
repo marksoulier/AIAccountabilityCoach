@@ -1,6 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializer import GoalsDreamsSerializer, ActivityTrackerSerializer
+from .serializer import (
+    GoalsDreamsSerializer,
+    ActivityTrackerSerializer,
+    UserProfileSerializer,
+)
 from .models import GoalsDreams, ActivityTracking
 from rest_framework.permissions import IsAuthenticated
 
@@ -18,6 +22,43 @@ class GoalsDreamsList(APIView):
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    def put(self, request, format=None):
+        try:
+            # Assuming the goal ID is passed in the URL as a query parameter.
+            goal_id = request.query_params.get("id")
+            goal_object = GoalsDreams.objects.get(id=goal_id, user=request.user)
+        except GoalsDreams.DoesNotExist:
+            return Response({"message": "Goal not found"}, status=404)
+
+        serializer = GoalsDreamsSerializer(
+            goal_object, data=request.data, partial=True
+        )  # partial=True allows partial update
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+
+# get and change user profile
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        # Fetch the user profile
+        user = request.user
+        serializer = UserProfileSerializer(user)
+        return Response(serializer.data)
+
+    def put(self, request, format=None):
+        user = request.user
+        serializer = UserProfileSerializer(
+            user, data=request.data, partial=True
+        )  # Allow partial update
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
 

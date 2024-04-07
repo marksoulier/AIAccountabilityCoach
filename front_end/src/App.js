@@ -7,11 +7,14 @@ import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
 import { setAuthTokens } from './actions/authActions';
 import { fetchGoals } from './actions/goalActions';
-import store from './store';
+import FormPage from './components/GoalCreator/FormPage';
+import ResultsPage from './components/GoalCreator/ResultsPage';
+import PaymentComponent from './components/Payment/PaymentComponent';
 
 function App() {
   // Set Authentication tokens from cookies
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     // Assuming tokens are stored in cookies for this example
@@ -25,6 +28,10 @@ function App() {
 
       //fetch the user data
       dispatch(fetchGoals());
+
+      //remove the tokens from the cookies
+      Cookies.remove('jwt_access_token');
+      Cookies.remove('jwt_refresh_token');
     }
   }, [dispatch]);
 
@@ -37,6 +44,9 @@ function App() {
         <Route path="/index/subscribe" element={<Subscribe />} />
         <Route path="/" element={<Navigate replace to="/index/dashboard" />} />
         <Route path="/index" element={<Navigate replace to="/index/dashboard" />} />
+        <Route path="/index/form" element={<FormPage />} />
+        <Route path="/index/results" element={<ResultsPage />} />
+        <Route path="/index/payment" element={<PaymentComponent />} />
       </Routes>
     </Router>
   );

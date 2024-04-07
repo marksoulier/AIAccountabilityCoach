@@ -1,5 +1,18 @@
 from rest_framework import serializers
 from .models import ActivityTracking, GoalsDreams
+from django.contrib.auth.models import User
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User  # Adjust this to your UserProfile model if using a custom one
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+        ]  # change user model to include subscription status
 
 
 class ActivityTrackerSerializer(serializers.ModelSerializer):

@@ -28,7 +28,7 @@ function FormPage() {
     setGoal({ ...goal, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (step < 5) {
       setStep(step + 1);
@@ -36,7 +36,7 @@ function FormPage() {
       setIsAnalyzing(true);
       const analysisResult = await analyzeGoal(); // Use a local variable instead
       setIsAnalyzing(false);
-      navigate('/results', { state: { goal, analysisResult } });
+      navigate('/index/results', { state: { goal, analysisResult } });
     }
   };
 

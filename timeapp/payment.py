@@ -1,34 +1,66 @@
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
 import stripe
 from time_budget.keys import STRIPE_SECRET_KEY
 
+stripe.api_key = STRIPE_SECRET_KEY
 
-# Payment confirmation endpoint
-@csrf_exempt
-@login_required
-def payment_confirmation(request):
-    if request.method == "POST":
-        payment_id = request.POST.get("paymentId")
 
-        # Verify the payment with Stripe
-        stripe.api_key = STRIPE_SECRET_KEY
+class PaymentConfirmationAPIView(APIView):
+    permission_classes = [IsAuthenticated]  # Ensures the user is logged in
+
+    def post(self, request, *args, **kwargs):
+        payment_method_id = request.data.get(
+            "paymentId"
+        )  # Extract the payment method ID from the request
+
+        if not payment_method_id:
+            return Response(
+                {"success": False, "message": "Payment method ID is missing."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         try:
-            payment_intent = stripe.PaymentIntent.retrieve(payment_id)
-            if payment_intent.status == "succeeded":
-                # Update user data based on payment confirmation
-                # e.g., update subscription status
-                return JsonResponse(
-                    {
-                        "success": True,
-                        "message": "Payment verified and user data updated.",
-                    }
-                )
-            else:
-                return JsonResponse(
-                    {"success": False, "message": "Payment verification failed."}
-                )
+            # Create a PaymentIntent with the order amount, currency, and payment method
+            intent = stripe.PaymentIntent.create(
+                amount=500,  # Amount is in cents, so 500 cents = $5
+                currency="usd",
+                payment_method=payment_method_id,
+                # confirmation_method="manual",
+                confirm=True,  # Automatically confirm the intent
+                automatic_payment_methods={
+                    "enabled": True,
+                    "allow_redirects": "never",
+                },
+                return_url="http://127.0.0.1:8000/index",  # Specify the return URL
+            )
+            return Response(
+                {
+                    "success": True,
+                    "message": "Payment processed successfully.",
+                    "intent_id": intent.id,
+                }
+            )
+        except stripe.error.CardError as e:
+            # Since it's a decline, stripe.error.CardError will be caught
+            body = e.json_body
+            err = body.get("error", {})
+            return Response(
+                {"success": False, "message": f"Card error: {err.get('message')}"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         except Exception as e:
-            return JsonResponse({"success": False, "message": str(e)})
-    return JsonResponse({"success": False, "message": "Invalid request"}, status=400)
+            return Response(
+                {"success": False, "message": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+    def get(self, request, *args, **kwargs):
+        # Handle GET request if needed or remove this method
+        return Response(
+            {"message": "GET method not supported"},
+            status=status.HTTP_405_METHOD_NOT_ALLOWED,
+        )
