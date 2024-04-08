@@ -1,7 +1,8 @@
 import { ADD_GOAL, REMOVE_GOAL, TOGGLE_GOAL_ACHIEVED, FETCH_GOALS_SUCCESS, UPDATE_HOURS_SPENT } from '../actions/goalActions';
+import dummyGoals from "../dummydata";
 
 const initialState = {
-    goals: [],
+    goals: dummyGoals,
 };
 
 const goalReducer = (state = initialState, action) => {

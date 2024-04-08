@@ -6,8 +6,6 @@ import { getCookie } from '../../utils/cookieUtils'; // Implement getCookie or u
 
 
 const Navigator = () => {
-    let navigate = useNavigate(); // Get the navigate function
-
     const handleLogout = async () => {
         const csrfToken = getCookie('csrftoken');
         try {

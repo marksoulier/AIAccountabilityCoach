@@ -10,6 +10,7 @@ import { fetchGoals } from './actions/goalActions';
 import FormPage from './components/GoalCreator/FormPage';
 import ResultsPage from './components/GoalCreator/ResultsPage';
 import PaymentComponent from './components/Payment/PaymentComponent';
+import Front from './components/Front/Front';
 
 function App() {
   // Set Authentication tokens from cookies
@@ -39,7 +40,8 @@ function App() {
     <Router>
       <Routes>
         {/* Redirect from root to /index */}
-        <Route path="/index/dashboard" element={<Dashboard />} />
+        {/* <Route path="/index/dashboard" element={<Dashboard />} /> */}
+        <Route path="/index/dashboard" element={<Front />} />
         <Route path="/index/profile" element={<Profile />} />
         <Route path="/index/subscribe" element={<Subscribe />} />
         <Route path="/" element={<Navigate replace to="/index/dashboard" />} />
