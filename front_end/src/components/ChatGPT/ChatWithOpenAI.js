@@ -15,7 +15,7 @@ function ChatWithOpenAI() {
         const accessToken = store.getState().auth.accessToken;
         // Setup headers with Authorization
         try {
-            const response = await fetch('/api/chat/', { // Adjust this URL to your API endpoint
+            const response = await fetch('/api/chat/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

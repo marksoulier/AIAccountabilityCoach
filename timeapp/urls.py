@@ -11,7 +11,12 @@ from .views import (
 )
 from django.conf import settings
 from django.urls import re_path, include
-from timeapp.api_views import GoalsDreamsList, ActivityTrackingList, UserProfileView
+from timeapp.api_views import (
+    GoalsDreamsList,
+    ActivityTrackingList,
+    UserView,
+    UserPreferencesView,
+)
 from django.contrib.auth import views as auth_views
 from timeapp.gpt_views import ChatWithOpenAIView
 from rest_framework_simplejwt.views import (
@@ -39,7 +44,10 @@ urlpatterns = [
     ),
     path("signout/", signout, name="signout"),
     # api views
-    path("api/user/profile/", UserProfileView.as_view(), name="user-profile"),
+    path("api/user/profile/", UserView.as_view(), name="user-profile"),
+    path(
+        "api/user/preferences/", UserPreferencesView.as_view(), name="user-preferences"
+    ),
     path("api/goals-dreams/", GoalsDreamsList.as_view(), name="goals-dreams-list"),
     path(
         "api/activity-tracking/",

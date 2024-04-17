@@ -10,6 +10,8 @@ export const TOGGLE_GOAL_ACHIEVED = 'TOGGLE_GOAL_ACHIEVED';
 export const CREATE_GOAL_SUCCESS = 'CREATE_GOAL_SUCCESS';
 export const CREATE_GOAL_FAILURE = 'CREATE_GOAL_FAILURE';
 
+export const UPDATE_GOAL_SUCCESS = 'UPDATE_GOAL_SUCCESS';
+export const UPDATE_GOAL_FAILURE = 'UPDATE_GOAL_FAILURE';
 
 // Action Creators
 
@@ -47,9 +49,9 @@ export const fetchGoals = () => async (dispatch) => {
 export const UPDATE_HOURS_SPENT = 'UPDATE_HOURS_SPENT';
 
 // Action creator for updating hours spent on a goal
-export const updateHoursSpent = (id, hoursSpent) => ({
+export const updateHoursSpent = (goal_id, hours_spent) => ({
     type: UPDATE_HOURS_SPENT,
-    payload: { id, hoursSpent },
+    payload: { goal_id, hours_spent },
 });
 
 // New asynchronous action creator for creating a goal
@@ -65,10 +67,16 @@ export const createGoalDream = (goalData) => async (dispatch) => {
             }
         });
 
+        const action = {
+            type: CREATE_GOAL_SUCCESS,
+            payload: response.data, // Assuming the server responds with the created goal
+        };
         dispatch({
             type: CREATE_GOAL_SUCCESS,
             payload: response.data, // Assuming the server responds with the created goal
         });
+        dispatch(fetchGoals());
+        return action;
         // Optionally, you can dispatch fetchGoals to refresh the list of goals
     } catch (error) {
         console.error('Failed to create goal:', error.response ? error.response.data : error);
@@ -81,6 +89,46 @@ export const createGoalDream = (goalData) => async (dispatch) => {
 };
 
 
+// Asynchronous action creator for updating a goal
+export const updateGoal = (goalData) => async (dispatch) => {
+    try {
+        // Fetch access token from Redux store
+        const accessToken = store.getState().auth.accessToken;
+
+        // Prepare headers and body for the PUT request
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        });
+
+        const response = await fetch('/api/goals-dreams/', {
+            method: 'PUT',
+            headers: headers,
+            body: JSON.stringify(goalData) // Send the updated goal data
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP status ${response.status}`);
+        }
+
+        const data = await response.json(); // Parsing the response data
+
+        dispatch({
+            type: UPDATE_GOAL_SUCCESS,
+            payload: data // Assuming the server responds with the updated goal
+        });
+
+        // Optionally, you can dispatch fetchGoals to refresh the list of goals
+        dispatch(fetchGoals());
+    } catch (error) {
+        console.error('Failed to update goal:', error.message);
+        dispatch({
+            type: UPDATE_GOAL_FAILURE,
+            payload: error.message, // Send error message to the reducer
+        });
+    }
+};
+
 // Add a Goal
 export const addGoal = (goal) => ({
     type: ADD_GOAL,
@@ -88,14 +136,14 @@ export const addGoal = (goal) => ({
 });
 
 // Remove a Goal by id
-export const removeGoal = (id) => ({
+export const removeGoal = (goal_id) => ({
     type: REMOVE_GOAL,
-    payload: id,
+    payload: goal_id,
 });
 
 
 // Add this function to goalActions.js
-export const toggleGoalAchieved = (id) => ({
+export const toggleGoalAchieved = (goal_id) => ({
     type: TOGGLE_GOAL_ACHIEVED,
-    payload: id,
+    payload: goal_id,
 });

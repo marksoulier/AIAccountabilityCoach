@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { TextField, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import GoalMake from './GoalMake';
+import Results from './Results';
+import Friends from './Friends';
+import { useDispatch } from 'react-redux';
+import { createGoalDream, updateGoal } from '../../actions/goalActions';
+import { analyzeGoal } from '../../actions/GptApi';
 
 function FormPage() {
-  const [step, setStep] = useState(1);
-  const [goal, setGoal] = useState({
+  const dispatch = useDispatch();
+  const [currentStep, setCurrentStep] = useState('goalMake');
+  const [goalData, setGoalData] = useState({
     specific: '',
     measurable: '',
     achievable: '',
@@ -14,87 +18,84 @@ function FormPage() {
   });
   const [analysisResult, setAnalysisResult] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const navigate = useNavigate();
 
-  const questions = [
-    { name: "specific", label: "Specific: What do you want to accomplish?" },
-    { name: "measurable", label: "Measurable: How will you measure success?" },
-    { name: "achievable", label: "Achievable: Is it achievable? Why?" },
-    { name: "relevant", label: "Relevance: Why is this goal important to you?" },
-    { name: "timeBound", label: "Time-Bound: When do you want to achieve this goal?" },
-  ];
-
-  const handleChange = (e) => {
-    setGoal({ ...goal, [e.target.name]: e.target.value });
+  // Function to handle the submission from GoalMake and analyze the goal
+  const handleGoalSubmit = () => {
+    setIsAnalyzing(true);
+    analyzeGoal(goalData, setAnalysisResult, setCurrentStep, setIsAnalyzing);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (step < 5) {
-      setStep(step + 1);
-    } else {
-      setIsAnalyzing(true);
-      const analysisResult = await analyzeGoal(); // Use a local variable instead
-      setIsAnalyzing(false);
-      navigate('/index/results', { state: { goal, analysisResult } });
-    }
-  };
 
-  const analyzeGoal = async () => {
-    try {
-      const response = await axios.post('https://api.openai.com/v1/completions', {
-        model: 'text-davinci-003',
-        prompt: `Is this a good SMART goal? ${Object.values(goal).join(' ')}`,
-        temperature: 0.7,
-        max_tokens: 100,
-        top_p: 1.0,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-        },
-      });
-      const data = response.data;
-      if (!data.choices || data.choices.length === 0) {
-        return 'Error: The analysis could not be completed.';
+  // Function to handle the creation of the goal
+  const createGoal = () => {
+    const newGoalData = {
+      goaltitle: goalData.specific,  // Keep the goal title as the specific goal
+      description: `AI coach: ${analysisResult}\n\n` + // Begin with the analysis result
+        `Measurable: ${goalData.measurable}\n` + // Use \n for new lines in the description
+        `Achievable: ${goalData.achievable}\n` +
+        `Relevant: ${goalData.relevant}\n` +
+        `Time-Bound: ${goalData.timeBound}\n`,
+      achieved: false,
+      hours_spent: 0.00,
+      hours_required: 0.00,
+      date_time: new Date().toISOString(),
+    };
+
+    dispatch(createGoalDream(newGoalData)).then((action) => {
+      if (action.type.endsWith('SUCCESS')) {
+        // Assuming that the goal_id is returned as part of the action payload
+        setGoalData((prevData) => ({
+          ...prevData,
+          goal_id: action.payload.goal_id
+        }));
+        setCurrentStep('friends'); // Proceed to friends after creating the goal
+      } else {
+        // Handle failure scenario
+        console.error('Failed to create goal');
       }
-      return data.choices[0].text;
-    } catch (error) {
-      console.error('An error occurred:', error);
-      return 'Error: Unable to perform the analysis.';
-    }
+    });
+  };
+
+  // Function to handle editing the goal (going back to GoalMake)
+  const editGoal = () => {
+    setCurrentStep('goalMake');
+  };
+
+  // Function to handle friends modal completion
+  const handleFriendsSubmit = (emails, incentive) => {
+    console.log('goalData:', goalData);
+    const updatedGoalData = {
+      goal_id: goalData.goal_id,
+      connected_emails: emails,
+      incentive: incentive,
+    };
+    dispatch(updateGoal(updatedGoalData));
+    setCurrentStep('goalMake'); // Optionally, reset or go to a new step
   };
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <h2>Create Your SMART Goal</h2>
-        {questions.slice(0, step).map((question, index) => (
-          index + 1 === step ? (
-            <TextField
-              key={question.name}
-              label={question.label}
-              variant="outlined"
-              name={question.name}
-              value={goal[question.name]}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-          ) : (
-            <div key={question.name}>
-              <strong>{question.label}</strong>
-              <p>{goal[question.name]}</p>
-            </div>
-          )
-        ))}
-        <Button type="submit" variant="contained" color="primary" disabled={isAnalyzing}>
-          {isAnalyzing ? 'Analyzing...' : (step === 5 ? 'Submit Goal' : 'Next')}
-        </Button>
-      </form>
+      {currentStep === 'goalMake' && (
+        <GoalMake
+          goalData={goalData}
+          onChange={setGoalData}
+          onSubmit={handleGoalSubmit}
+          isAnalyzing={isAnalyzing}
+        />
+      )}
+      {currentStep === 'results' && (
+        <Results
+          goalData={goalData}
+          analysisResult={analysisResult}
+          onEditGoal={editGoal}
+          onCreateGoal={createGoal}
+        />
+      )}
+      {currentStep === 'friends' && (
+        <Friends
+          handleSubmit={handleFriendsSubmit}
+        />
+      )}
     </div>
   );
 }

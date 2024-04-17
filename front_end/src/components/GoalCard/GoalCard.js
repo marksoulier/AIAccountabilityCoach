@@ -10,21 +10,25 @@ import Chip from '@mui/material/Chip';
 import { green, red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 
-const GoalCard = ({ goal_id, goaltitle, description, achieved, hours_spent, hours_required, date_time, connected_emails, incentive, user }) => {
+const GoalCard = ({ goal_id, goaltitle, description, achieved, hours_spent, hours_required, date_time, connected_emails, incentive, user, onClick }) => {
   const dispatch = useDispatch();
 
-  const handleAchieveGoal = () => {
+  const handleAchieveGoal = (e) => {
+    e.stopPropagation();
     dispatch(toggleGoalAchieved(goal_id));
   };
 
   return (
-    <Card sx={{ minWidth: 275, marginBottom: 2, border: achieved ? `2px solid ${green[500]}` : `2px solid ${red[500]}` }}>
+    <Card
+      sx={{ minWidth: 275, marginBottom: 2, border: achieved ? `2px solid ${green[500]}` : `2px solid ${red[500]}` }}
+      onClick={onClick}
+    >
       <CardContent>
         <Typography variant="h5" component="div">
           {goaltitle}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Description: {description}
+          {description}
         </Typography>
         <Chip
           label={achieved ? "Completed" : "Not completed"}

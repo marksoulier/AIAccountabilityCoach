@@ -26,7 +26,7 @@ class ChatWithOpenAIView(APIView):
             messages=[
                 {
                     "role": "system",
-                    "content": "Hello",
+                    "content": "Give the user a summerization of their goal in a single clear sentence. Then give one sentance feedback as to how they can make their goal more SMART?",
                 },
                 {"role": "user", "content": user_input},
             ],

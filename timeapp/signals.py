@@ -1,6 +1,22 @@
 from django.dispatch import receiver
 from django.contrib.auth.signals import user_logged_in
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+from .models import (
+    UserProfile,
+)
+
+
+# Signal to create/update UserProfile upon user creation/update
+# @receiver(post_save, sender=User)
+# def create_or_update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         UserProfile.objects.create(user=instance)
+#     else:
+#         # Ensure this block only runs if you need to initialize a new profile
+#         UserProfile.objects.get_or_create(user=instance)
 
 
 @receiver(user_logged_in)

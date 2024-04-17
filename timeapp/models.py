@@ -3,18 +3,16 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.contrib.auth.models import User
 
 
-# add suscription to the model
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     subscription_status = models.BooleanField(
-#         default=False
-#     )  # Assuming a simple active/inactive subscription status
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    subscription = models.BooleanField(default=False)
+    description = models.TextField()
+    dark_mode = models.BooleanField(default=False)
 
-#     def __str__(self):
-#         return self.user.username
+    def __str__(self):
+        return f"{self.user.username}'s profile"
 
 
 # Activity Tracking Model

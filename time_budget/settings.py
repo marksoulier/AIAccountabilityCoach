@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",  # for api
-    "corsheaders",  # for api
     "rest_framework.authtoken",  # for api
     # authenticaion
     "django.contrib.sites",
@@ -122,7 +121,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
 ]
 

@@ -7,8 +7,9 @@ import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
 import { setAuthTokens } from './actions/authActions';
 import { fetchGoals } from './actions/goalActions';
+import { fetchUserProfile } from './actions/profileActions';
+import { fetchUserPreferences } from './actions/preferencesActions';
 import FormPage from './components/GoalCreator/FormPage';
-import ResultsPage from './components/GoalCreator/ResultsPage';
 import PaymentComponent from './components/Payment/PaymentComponent';
 import Front from './components/Front/Front';
 
@@ -30,6 +31,12 @@ function App() {
       //fetch the user data
       dispatch(fetchGoals());
 
+      // Fetch the user profile
+      dispatch(fetchUserProfile());
+
+      // Fetch the user preferences
+      dispatch(fetchUserPreferences());
+
       //remove the tokens from the cookies
       Cookies.remove('jwt_access_token');
       Cookies.remove('jwt_refresh_token');
@@ -42,12 +49,12 @@ function App() {
         {/* Redirect from root to /index */}
         {/* <Route path="/index/dashboard" element={<Dashboard />} /> */}
         <Route path="/index/dashboard" element={<Front />} />
+        {/* <Route path="/index/dashboard" element={<Profile />} /> */}
         <Route path="/index/profile" element={<Profile />} />
         <Route path="/index/subscribe" element={<Subscribe />} />
         <Route path="/" element={<Navigate replace to="/index/dashboard" />} />
         <Route path="/index" element={<Navigate replace to="/index/dashboard" />} />
         <Route path="/index/form" element={<FormPage />} />
-        <Route path="/index/results" element={<ResultsPage />} />
         <Route path="/index/payment" element={<PaymentComponent />} />
       </Routes>
     </Router>

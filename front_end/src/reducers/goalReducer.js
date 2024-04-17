@@ -1,5 +1,5 @@
-import { ADD_GOAL, REMOVE_GOAL, TOGGLE_GOAL_ACHIEVED, FETCH_GOALS_SUCCESS, UPDATE_HOURS_SPENT } from '../actions/goalActions';
-import dummyGoals from "../dummydata";
+import { ADD_GOAL, REMOVE_GOAL, TOGGLE_GOAL_ACHIEVED, FETCH_GOALS_SUCCESS, UPDATE_HOURS_SPENT, CREATE_GOAL_SUCCESS } from '../actions/goalActions';
+import dummyGoals from '../dummydata/dummydata';
 
 const initialState = {
     goals: dummyGoals,
@@ -8,9 +8,11 @@ const initialState = {
 const goalReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_GOAL:
+        case CREATE_GOAL_SUCCESS:
             return {
                 ...state,
                 goals: [...state.goals, action.payload],
+                currentGoal: action.payload // Store the newly created goal in a separate part of state if needed
             };
         case REMOVE_GOAL:
             return {
