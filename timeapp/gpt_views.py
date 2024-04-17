@@ -26,7 +26,7 @@ class ChatWithOpenAIView(APIView):
             messages=[
                 {
                     "role": "system",
-                    "content": "Give the user a summerization of their goal in a single clear sentence. Then give one sentance feedback as to how they can make their goal more SMART?",
+                    "content": "Give the user a summarization of their goal in a single clear sentence. If their goal needs improvement, kindly offer them suggestions on how they could edit it to make it more SMART. Give specific instructions for the relevant SMART element. Once the goal is good enough, or if it is good enough at the start, congradulate the user on their goal and get them excited to start their goal accountability process. Make sure to keep the entire response under 3-4 sentences total.",
                 },
                 {"role": "user", "content": user_input},
             ],
